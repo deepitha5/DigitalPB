@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Transaction Entry Form</title>
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+            background-image: url('https://wallpapercave.com/wp/wp11834567.png');
+		    background-size: cover;
+        color: #f7f7f7;
+        text-align: center;
+		}
+		header {
+			background-color: #040214;
+			color: #fff;
+			padding: 0px;
+			position: fixed;
+			top: 0;
+			left: 0;
+			right: 0;
+			z-index: 9999;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+        }
+		.container {
+			margin: 20px auto 0;
+			max-width: 700px;
+			padding: 20px;
+			box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+		}
+		form {
+			margin: 50px auto;
+			padding: 20px;
+			width: 80%;
+			max-width: 600px;
+			border: 1px solid #ccc;
+			border-radius: 10px;
+		}
+		label {
+			display: inline-block;
+			margin-bottom: 10px;
+			font-weight: bold;
+			font-size: 18px;
+		}
+		select, input[type=text] {
+			width: 100%;
+			padding: 12px 20px;
+			margin: 8px 0;
+			box-sizing: border-box;
+			border: 2px solid #ccc;
+			border-radius: 4px;
+			font-size: 16px;
+		}
+		input[type="submit"] {
+			background-color: #279ccf;
+			color: white;
+			padding: 10px 20px;
+			border: none;
+			border-radius: 5px;
+			cursor: pointer;
+			float: none ;
+		}
+		input[type="submit"]:hover {
+			background-color: #0d073b;
+		}
+	</style>
+</head>
+<body>
+	<header>
+		<h1>Digital Payment Book</h1>
+	</header>
+    <div class="container">
+	<form method="POST">
+		<input type="radio" id="cc" name="typecd" value="p" checked>
+  		<label for="cc">Credit</label><br>
+  		<input type="radio" id="dd" name="typecd" value="n">
+ 		<label for="dd">Debit</label><br>
+		<hr>
+        <label for="amount">Enter the Amount</label>
+		<input type="text" id="amount" name="amount">
+        <label for="sender">From/To:</label>
+		<input type="text" id="sender" name="sender">
+        <label for="da">Allocation % for HR Department:</label>
+		<input type="text" id="da" name="da">
+        <label for="db">Allocation % for Sales Department:</label>
+		<input type="text" id="db" name="db">
+        <label for="dc">Allocation % for Legal Department:</label>
+		<input type="text" id="dc" name="dc">
+        <label for="dd">Allocation % for IQAC Department:</label>
+		<input type="text" id="dd" name="dd">
+        <label for="de">Allocation % for IT Department:</label>
+		<input type="text" id="de" name="de">
+		<br><br>
+		<input type="submit" value="Submit">
+	</form>
+	</div>
+</body>
+</html>

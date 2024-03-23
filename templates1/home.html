@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<title>Payment Book Dashboard</title>
+	<style type="text/css">
+		body {
+			font-family: Arial, sans-serif;
+            background-image: url('https://wallpapercave.com/wp/wp11834567.png');
+		    background-size: cover;
+        color: #f7f7f7;
+        text-align: center;
+		}
+		.hcontainer {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+		}
+
+		.total_amount, .HR_amount, .sales_amount, .legal_amount, .IQAC_amount, .IT_amount {
+			text-align: center;
+			font-size: 18px;
+			font-weight: bold;
+			margin-bottom: 20px;
+		}
+
+		.total_amount {
+			color: #00c853;
+		}
+
+		.HR_amount, .sales_amount, .legal_amount, .IQAC_amount, .IT_amount{
+			color: #039be5;
+		}
+		.container {
+			margin: 20px auto 0;
+			max-width: 700px;
+			padding: 20px;
+			box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+			background-color: #f7f7f7;
+			opacity: 0.7;
+		}
+
+	</style>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$.getJSON("/data", function(data) {
+				// Update the total sales and views
+				$(".total_amount").text("Total Amount Available: " + data.total_amount);
+				$(".HR_amount").text("HR Department Holdings: " + data.HR_amount);
+                $(".sales_amount").text("Sales Department Holdings: " + data.sales_amount);
+                $(".legal_amount").text("Legal Department Holdings: " + data.legal_amount);
+                $(".IQAC_amount").text("IQA Cell Holdings: " + data.IQAC_amount);
+                $(".IT_amount").text("IT Department Holdings: " + data.IT_amount);
+
+				// Create a pie chart
+				var ctx = document.getElementById("myChart").getContext("2d");
+				var myChart = new Chart(ctx, {
+					type: 'pie',
+					data: {
+						labels: ['HR', 'Sales', 'Legal', 'IQAC', 'IT'],
+						datasets: [{
+							backgroundColor: ['#03a9f4', '#f44336', '#9c27b0', '#e91e63', '#00bcd4'],
+							data: [data.HR_amount, data.sales_amount, data.legal_amount, data.IQAC_amount, data.IT_amount]
+						}]
+					}
+				});
+			});
+		});
+	</script>
+</head>
+<body>
+	<div style="background-color: #040214;">
+	<hr>
+	<br>
+	<h1>Digital Payment Book</h1>
+	<br>
+	<p> Logged In As {{username}} 	(<a style="color: #f7f7f7 ;" href="{{ url_for('logout') }}">Logout</a>) </p>
+	<hr>
+	</div>
+	<br>
+	<a href="{{ url_for('index') }}"style="color: #f7f7f7; text-decoration: none; padding: 10px; border-radius: 5px; background-color: #555; margin-right: 10px;">Manual Entry Form</a>
+	<a href="{{ url_for('upload_csv') }}"style="color: #f7f7f7; text-decoration: none; padding: 10px; border-radius: 5px; background-color: #555; margin-right: 10px;">Import Data</a>
+	<a href="{{ url_for('download_csv') }}"style="color: #f7f7f7; text-decoration: none; padding: 10px; border-radius: 5px; background-color: #555; margin-right: 10px;">Export Data</a>
+	<div class="container">
+		<div class="total_amount"></div>
+	    <hr>
+	    <div class="HR_amount"></div>
+	    <div class="sales_amount"></div>
+	    <div class="legal_amount"></div>
+	    <div class="IQAC_amount"></div>
+	    <div class="IT_amount"></div>
+		</div>
+		<br>
+		<div class="hcontainer">
+	    <canvas id="myChart"></canvas>
+	</div>
+</body>
+</html>
